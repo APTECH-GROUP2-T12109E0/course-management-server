@@ -137,7 +137,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<BlogDto> findAllBlogsByUserId(long userId) {
-        List<Blog> blogs = blogRepository.findByUserId(userId);
+        List<Blog> blogs = blogRepository.findByUser_Id(userId);
         List<BlogDto> blogDtos = new ArrayList<>();
         for (Blog blog : blogs) {
             BlogDto blogDto = toBlogDto(blog);
