@@ -184,6 +184,16 @@ public class AuthenticationController {
   @PostMapping("/change-password")
   public ResponseEntity<?> changePassword(@RequestBody AuthenticationRequestDto request) {
     try {
+      Optional<User> optionalUser = userService.findByEmail(request.getEmail());
+
+      if (optionalUser.isEmpty())
+        throw new ResourceNotFoundException("User not found.");
+
+      User user = optionalUser.get();
+
+      if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword()))
+        throw new BadRequestException("Old password is not correct.");
+
       authService.changePassword(request);
       return ResponseEntity.ok("");
     } catch (NoSuchElementException e) {
