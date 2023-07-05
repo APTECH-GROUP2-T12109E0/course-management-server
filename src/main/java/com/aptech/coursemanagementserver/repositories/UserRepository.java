@@ -1,5 +1,6 @@
 package com.aptech.coursemanagementserver.repositories;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,4 +31,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
             WHERE u.role <> 'USER' AND u.role <> 'ADMIN'
                       """, nativeQuery = true)
     List<User> findAllExceptRoleUSERAndRoleADMIN();
+
+    @Query(value = """
+            SELECT * FROM users u
+            WHERE u.created_at BETWEEN ?1 AND ?2
+                AND u.role = 'USER'
+                """, nativeQuery = true)
+    List<User> findByCreatedAtBetween(Instant startOfDay, Instant endOfDay);
 }

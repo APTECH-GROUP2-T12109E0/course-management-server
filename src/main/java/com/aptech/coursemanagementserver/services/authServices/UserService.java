@@ -26,4 +26,6 @@ public interface UserService {
     public void save(User user);
 
     public boolean isContains(final List<User> list, final String email);
+
+    public List<UserDto> findAllRegisteredToday();
 }

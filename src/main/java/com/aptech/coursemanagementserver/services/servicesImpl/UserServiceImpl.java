@@ -3,6 +3,10 @@ package com.aptech.coursemanagementserver.services.servicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -117,5 +121,21 @@ public class UserServiceImpl implements UserService {
                 .updated_at(user.getUpdated_at())
                 .build();
         return userDto;
+    }
+
+    @Override
+    public List<UserDto> findAllRegisteredToday() {
+        LocalDate today = LocalDate.now();
+        Instant startOfDay = today.atStartOfDay(ZoneId.systemDefault()).toInstant();
+        Instant endOfDay = today.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant();
+
+        List<User> users = userRepository.findByCreatedAtBetween(startOfDay, endOfDay);
+
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user : users) {
+            UserDto userDto = toDto(user);
+            userDtos.add(userDto);
+        }
+        return userDtos;
     }
 }

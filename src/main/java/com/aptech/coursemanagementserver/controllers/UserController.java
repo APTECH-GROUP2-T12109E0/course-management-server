@@ -226,4 +226,11 @@ public class UserController {
             throw new BadRequestException(GLOBAL_EXCEPTION);
         }
     }
+
+    @GetMapping("/user-registered-today")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')")
+    public ResponseEntity<List<UserDto>> getRegisteredToday() {
+        List<UserDto> registeredToday = userService.findAllRegisteredToday();
+        return ResponseEntity.ok(registeredToday);
+    }
 }
