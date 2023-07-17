@@ -27,7 +27,7 @@ COPY --from=build /app/target/course-management-server-0.0.1-SNAPSHOT.jar .
 COPY src/main/resources/application.properties.disc /app/application.properties
 
 # Expose the port that the application will listen on
-EXPOSE 8080
+# EXPOSE 8080
 
 # Set the entry point for the container
 ENTRYPOINT ["java", "-jar", "course-management-server-0.0.1-SNAPSHOT.jar"]
