@@ -1,7 +1,7 @@
 spring.profiles.active=dev
-spring.datasource.url=jdbc:sqlserver://localhost:1434;instanceName=TEECEE;databaseName=CMDB;encrypt=true;trustServerCertificate=true
-spring.datasource.username=sa
-spring.datasource.password=5563079789Aa@123
+spring.datasource.url=jdbc:sqlserver://SQL8002.site4now.net;databaseName=db_a9c653_sa;encrypt=true;trustServerCertificate=true
+spring.datasource.username=db_a9c653_sa_admin
+spring.datasource.password=Aptech@123
 spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
