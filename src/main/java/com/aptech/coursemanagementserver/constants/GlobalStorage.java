@@ -1,5 +1,4 @@
 package com.aptech.coursemanagementserver.constants;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,8 +6,7 @@ import java.util.Map;
 
 public interface GlobalStorage {
     // import static com.aptech.coursemanagementserver.constants.GlobalStorage.*;
-    @Value("${spring.mail.username}")
-    private String fromEmail;
+
     // JWT
     String TOKEN_PREFIX = "Bearer ";
     String HEADER_STRING = "Authorization";
@@ -24,17 +22,17 @@ public interface GlobalStorage {
     String DOMAIN_EMAIL = "contact@cmproj.com";
 
     // DOMAIN API URL
-    String DEV_DOMAIN_API = "http://localhost:8080";
-    String PROD_DOMAIN_API = "https://cmapi.com";
+    String DEV_DOMAIN_API = "${domain.api}";
+    String PROD_DOMAIN_API = "${domain.api}";
 
     // DOMAIN CLIENT URL
-    String DEV_DOMAIN_CLIENT = "http://localhost:3000";
-    String PROD_DOMAIN_CLIENT = "http://cmclient.com";
+    String DEV_DOMAIN_CLIENT = "${domain.client}";
+    String PROD_DOMAIN_CLIENT = "${domain.client}";
 
     // API
-    String COURSE_DOWNLOAD_API = "http://localhost:8080/course/download/";
-    String STREAM_API = "http://localhost:8080/video/stream/";
-    String CAPTION_API = "http://localhost:8080/video/caption/";
+    String COURSE_DOWNLOAD_API = "${domain.api}/course/download/";
+    String STREAM_API = "${domain.api}/video/stream/";
+    String CAPTION_API = "${domain.api}/video/caption/";
 
     // CLIENT
     String PAYMENT_SUCCESS_CLIENT = DEV_DOMAIN_CLIENT + "/payment/success";
