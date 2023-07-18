@@ -241,16 +241,18 @@ public class CourseServiceImpl implements CourseService {
         if (course.getStatus() == 0 && courseDto.getStatus() == 1) {
             course.setPublished_at(new Date());
             CourseTreeInterface courseTree = courseRepository.findCourseTreeByCourseId(courseDto.getId());
-
-            if (courseTree.getSectionId() == 0
-                    || (courseTree.getSectionId() != 0 && courseTree.getSectionStatus() == 0)) {
-                throw new BadRequestException("Cannot activate course that don't have enough section.");
-            }
-            if (courseTree.getLessonId() == 0 || (courseTree.getLessonId() != 0 && courseTree.getLessonStatus() == 0)) {
-                throw new BadRequestException("Cannot activate course that don't have enough lesson.");
-            }
-            if (courseTree.getVideoId() == 0) {
-                throw new BadRequestException("Cannot activate course that don't have enough video.");
+            if (courseTree != null) {
+                if (courseTree.getSectionId() == 0
+                        || (courseTree.getSectionId() != 0 && courseTree.getSectionStatus() == 0)) {
+                    throw new BadRequestException("Cannot activate course that don't have enough section.");
+                }
+                if (courseTree.getLessonId() == 0
+                        || (courseTree.getLessonId() != 0 && courseTree.getLessonStatus() == 0)) {
+                    throw new BadRequestException("Cannot activate course that don't have enough lesson.");
+                }
+                if (courseTree.getVideoId() == 0) {
+                    throw new BadRequestException("Cannot activate course that don't have enough video.");
+                }
             }
         }
 

@@ -24,23 +24,16 @@ public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecif
         List<Author> findAll();
 
         @Query(value = """
-                        SELECT TOP 3 b.* FROM (
-                        SELECT COUNT (a1.authorId) enrollmentCount,
-                        [id], [created_at], [image], [name],
-                        [information], [title]
-                        FROM author a LEFT JOIN
-                        (
-                        SELECT  c.author_id AuthorId ,c.id courseId FROM author a
-                        LEFT JOIN course c ON a.id = c.author_id
-                        INNER JOIN enrollment e ON c.id = e.course_id
-                        GROUP BY author_id,  c.id
-
-                        ) AS a1 ON a.id = a1.AuthorId
-
-                        GROUP BY [id], [created_at], [image], a.[name], [information], [title]
-                        ) b
-                        ORDER BY b.enrollmentCount DESC
-                                    """, nativeQuery = true)
+                        SELECT TOP 3 ISNULL(a1.enrollmentCount, 0) AS enrollmentCount, a.id, a.image,
+                        a.information, a.name, a.title
+                        FROM     author AS a LEFT OUTER JOIN
+                        (SELECT COUNT(*) AS enrollmentCount, c.author_id AS AuthorId
+                        FROM      author AS a LEFT OUTER JOIN
+                        course AS c ON a.id = c.author_id INNER JOIN
+                        enrollment AS e ON c.id = e.course_id
+                        GROUP BY c.author_id) AS a1 ON a.id = a1.AuthorId
+                        ORDER BY enrollmentCount DESC
+                                            """, nativeQuery = true)
         List<AuthorInterface> findTop3();
 
         @Query(value = """

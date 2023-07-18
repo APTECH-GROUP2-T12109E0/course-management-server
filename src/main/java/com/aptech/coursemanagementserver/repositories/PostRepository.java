@@ -8,11 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aptech.coursemanagementserver.enums.CommentType;
 import com.aptech.coursemanagementserver.models.Post;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findAllByCourseId(long courseId);
+    List<Post> findAllByTypeIdAndType(long typeId, CommentType type);
 
     @Modifying
     @Transactional

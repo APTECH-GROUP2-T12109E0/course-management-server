@@ -3190,13 +3190,13 @@ SET IDENTITY_INSERT [dbo].[user_permission] OFF
 GO
 SET IDENTITY_INSERT [dbo].[post] ON 
 
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (1, N'First post, Haha!', 1, CAST(N'2023-07-15T07:58:30.4830920+00:00' AS DateTimeOffset), 4)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (2, N'Post2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1, CAST(N'2023-07-15T07:58:30.5010910+00:00' AS DateTimeOffset), 5)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (3, N'Post3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1, CAST(N'2023-07-15T07:58:30.5300930+00:00' AS DateTimeOffset), 6)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (4, N'<strong><span style="color: rgb(200, 0, 0);">Ai cho comment? Xin phép tui chưa?</span></strong>', 1, CAST(N'2023-06-20T00:03:46.1336210+00:00' AS DateTimeOffset), 1)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (5, N'<p>Post5 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, CAST(N'2023-06-20T00:06:16.4667310+00:00' AS DateTimeOffset), 4)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (6, N'<p>Post6 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, CAST(N'2023-06-22T12:52:56.6728850+00:00' AS DateTimeOffset), 7)
-INSERT [dbo].[post] ([id], [content], [course_id], [created_at], [user_post_id]) VALUES (10, N'<p>Post7 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, CAST(N'2023-06-22T12:52:56.6728850+00:00' AS DateTimeOffset), 8)
+INSERT [dbo].[post] ([id], [content], [type_id], [type], [created_at], [user_post_id]) VALUES (1, N'First post, Haha!', 1, 'COURSE', CAST(N'2023-07-15T07:58:30.4830920+00:00' AS DateTimeOffset), 4)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (2, N'Post2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1, 'COURSE', CAST(N'2023-07-15T07:58:30.5010910+00:00' AS DateTimeOffset), 5)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (3, N'Post3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 1, 'COURSE', CAST(N'2023-07-15T07:58:30.5300930+00:00' AS DateTimeOffset), 6)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (4, N'<strong><span style="color: rgb(200, 0, 0);">Ai cho comment? Xin phép tui chưa?</span></strong>', 1, 'COURSE', CAST(N'2023-06-20T00:03:46.1336210+00:00' AS DateTimeOffset), 1)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (5, N'<p>Post5 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, 'COURSE', CAST(N'2023-06-20T00:06:16.4667310+00:00' AS DateTimeOffset), 4)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (6, N'<p>Post6 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, 'COURSE', CAST(N'2023-06-22T12:52:56.6728850+00:00' AS DateTimeOffset), 7)
+INSERT [dbo].[post] ([id], [content], [type_id],[type], [created_at], [user_post_id]) VALUES (10, N'<p>Post7 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>', 1, 'COURSE', CAST(N'2023-06-22T12:52:56.6728850+00:00' AS DateTimeOffset), 8)
 SET IDENTITY_INSERT [dbo].[post] OFF
 GO
 SET IDENTITY_INSERT [dbo].[comment] ON 

@@ -35,12 +35,13 @@ import static com.aptech.coursemanagementserver.constants.GlobalStorage.GLOBAL_E
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/stream/{courseId}")
+    @GetMapping("/stream/{typeId}/{type}")
     @Operation(summary = "[ANY ROLE] - Stream Posts")
     // @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER', 'EMPLOYEE')")
-    public Flux<ServerSentEvent<List<PostDto>>> streamPosts(@PathVariable("courseId") long courseId) {
+    public Flux<ServerSentEvent<List<PostDto>>> streamPosts(@PathVariable("typeId") long typeId,
+            @PathVariable("type") String type) {
         try {
-            return postService.streamPosts(courseId);
+            return postService.streamPosts(typeId, type);
         } catch (NoSuchElementException e) {
             throw new ResourceNotFoundException(e.getMessage());
         } catch (Exception e) {
@@ -48,18 +49,19 @@ public class PostController {
         }
     }
 
-    @GetMapping("/{courseId}")
-    @Operation(summary = "[ANY ROLE] - Get All Posts")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER', 'EMPLOYEE')")
-    public ResponseEntity<List<PostDto>> getAllPostsByCourseId(@PathVariable("courseId") long courseId) {
-        try {
-            return ResponseEntity.ok(postService.findAllByCourseId(courseId));
-        } catch (NoSuchElementException e) {
-            throw new ResourceNotFoundException(e.getMessage());
-        } catch (Exception e) {
-            throw new BadRequestException(GLOBAL_EXCEPTION);
-        }
-    }
+    // @GetMapping("/{courseId}")
+    // @Operation(summary = "[ANY ROLE] - Get All Posts")
+    // @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER', 'EMPLOYEE')")
+    // public ResponseEntity<List<PostDto>>
+    // getAllPostsByCourseId(@PathVariable("courseId") long courseId) {
+    // try {
+    // return ResponseEntity.ok(postService.findAllByCourseId(courseId));
+    // } catch (NoSuchElementException e) {
+    // throw new ResourceNotFoundException(e.getMessage());
+    // } catch (Exception e) {
+    // throw new BadRequestException(GLOBAL_EXCEPTION);
+    // }
+    // }
 
     @GetMapping("/{postId}")
     @Operation(summary = "[ANY ROLE] - Get Post By PostId")

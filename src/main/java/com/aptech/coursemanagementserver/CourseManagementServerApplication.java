@@ -21,6 +21,7 @@ import com.aptech.coursemanagementserver.dtos.AuthorDto;
 import com.aptech.coursemanagementserver.dtos.CategoryDto;
 import com.aptech.coursemanagementserver.dtos.PostDto;
 import com.aptech.coursemanagementserver.dtos.RegisterRequestDto;
+import com.aptech.coursemanagementserver.enums.CommentType;
 import com.aptech.coursemanagementserver.models.Permissions;
 import com.aptech.coursemanagementserver.models.Roles;
 import com.aptech.coursemanagementserver.models.User;
@@ -219,14 +220,17 @@ public class CourseManagementServerApplication {
 
 				// =============== POST ===============
 				postService.create(
-						PostDto.builder().content("First post, Haha!").userId(userTest.getId()).courseId(1)
+						PostDto.builder().content("First post, Haha!").userId(userTest.getId()).typeId(1)
+								.type(CommentType.COURSE)
 								.build());
 				postService.create(PostDto.builder()
 						.content("Post2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-						.userId(userTest2.getId()).courseId(1).build());
+						.userId(userTest2.getId()).typeId(1).type(CommentType.COURSE)
+						.build());
 				postService.create(PostDto.builder()
 						.content("Post3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-						.userId(userTest3.getId()).courseId(1).build());
+						.userId(userTest3.getId()).typeId(1).type(CommentType.COURSE)
+						.build());
 
 				// =============== MORE USER ===============
 				for (int index = 6; index < 88; index++) {

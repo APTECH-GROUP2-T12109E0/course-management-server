@@ -6,9 +6,13 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.aptech.coursemanagementserver.enums.CommentType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -46,7 +50,10 @@ public class Post {
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
 
-    private long courseId;
+    private long typeId;
+
+    @Enumerated(EnumType.STRING)
+    private CommentType type;
 
     @CreationTimestamp
     @Builder.Default

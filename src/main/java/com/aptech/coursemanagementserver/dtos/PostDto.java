@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.aptech.coursemanagementserver.enums.CommentType;
 import com.aptech.coursemanagementserver.enums.Role;
 
 import jakarta.persistence.EnumType;
@@ -31,7 +32,9 @@ public class PostDto {
     @Builder.Default
     private Role role = Role.USER;
 
-    private long courseId;
+    private long typeId;
+    @Enumerated(EnumType.STRING)
+    private CommentType type;
 
     private List<UserDto> likedUsers;
 
