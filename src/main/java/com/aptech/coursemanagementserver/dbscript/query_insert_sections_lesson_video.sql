@@ -17,5 +17,19 @@ FROM section
 WHERE section.id BETWEEN 8 AND 34
 
 INSERT [dbo].[video] ([lesson_id], [caption_urls], [created_at], [duration], [name], [status], [updated_at], [url])
-SELECT l.id , N'http://localhost:8080/video/caption/sample.en.vtt,http://localhost:8080/video/caption/sample.vi.vtt,http://localhost:8080/video/caption/sample.jp.vtt', CAST(N'2023-06-12T15:36:43.8405520+00:00' AS DateTimeOffset), 0, N'230612223643_course_1.mp4', 1, CAST(N'2023-06-12T15:36:43.8405520+00:00' AS DateTimeOffset), N'http://localhost:8080/video/stream/mp4/230612223643_course_1' FROM lesson l
+SELECT l.id , N'http://localhost:8080/video/caption/sample.en.vtt,http://localhost:8080/video/caption/sample.vi.vtt,http://localhost:8080/video/caption/sample.jp.vtt',
+ CAST(N'2023-06-12T15:36:43.8405520+00:00' AS DateTimeOffset), 0, N'230612223643_course_1.mp4', 1, CAST(N'2023-06-12T15:36:43.8405520+00:00' AS DateTimeOffset), N'http://localhost:8080/video/stream/mp4/230612223643_course_1' FROM lesson l
 WHERE l.id BETWEEN 9 AND 63
+
+DECLARE @i INT = 9;
+
+WHILE @i <= 63
+BEGIN
+    UPDATE video
+	SET url = CONCAT('http://localhost:8080/video/stream/mp4/', 230612223800 + @i, '_course_1'),
+	name = CONCAT(230612223800 + @i, '_course_1.mp4')
+	WHERE lesson_id = @i AND @i <= 63;
+    
+    SET @i = @i + 1; -- Increment the value of @i
+END
+
