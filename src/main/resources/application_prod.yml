@@ -72,5 +72,5 @@ paypal:
       email: sb-c9mcj26117776@personal.example.com
       password: e@LbdH4n
 domain:
-  client: http://localhost:3000
-  api: http://localhost:8080
+  client: https://clicknlearn.up.railway.app
+  api: https://clicknlearn-api.up.railway.app

@@ -29,8 +29,8 @@ RUN mkdir -p /app/assets/images/course
 
 # Copy the built JAR file from the build image to the runtime image
 COPY --from=build /app/target/course-management-server-0.0.1-SNAPSHOT.jar .
-COPY src/main/resources/application.properties.disc /app/application.properties
-COPY src/main/resources/application.yml /app/application.yml
+COPY src/main/resources/application.properties_prod.disc /app/application.properties
+COPY src/main/resources/application_prod.yml /app/application.yml
 COPY src/main/resources/jasperreports_extension.properties /app/jasperreports_extension.properties
 
 # Expose the port that the application will listen on

@@ -1,4 +1,5 @@
 package com.aptech.coursemanagementserver.constants;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -6,7 +7,8 @@ import java.util.Map;
 
 public interface GlobalStorage {
     // import static com.aptech.coursemanagementserver.constants.GlobalStorage.*;
-
+    @Value("${spring.mail.username}")
+    private String fromEmail;
     // JWT
     String TOKEN_PREFIX = "Bearer ";
     String HEADER_STRING = "Authorization";
