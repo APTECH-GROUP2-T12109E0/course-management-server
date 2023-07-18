@@ -3,6 +3,8 @@ package com.aptech.coursemanagementserver.constants;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_API;
+import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_CLIENT;
 
 public interface GlobalStorage {
     // import static com.aptech.coursemanagementserver.constants.GlobalStorage.*;
@@ -20,19 +22,6 @@ public interface GlobalStorage {
 
     // DOMAIN EMAIL
     String DOMAIN_EMAIL = "contact@cmproj.com";
-
-    // DOMAIN API URL
-    String DEV_DOMAIN_API = "http://localhost:8080";
-    String PROD_DOMAIN_API = "https://cmapi.com";
-
-    // DOMAIN CLIENT URL
-    String DEV_DOMAIN_CLIENT = "http://localhost:3000";
-    String PROD_DOMAIN_CLIENT = "http://cmclient.com";
-
-    // API
-    String COURSE_DOWNLOAD_API = "http://localhost:8080/course/download/";
-    String STREAM_API = "http://localhost:8080/video/stream/";
-    String CAPTION_API = "http://localhost:8080/video/caption/";
 
     // CLIENT
     String PAYMENT_SUCCESS_CLIENT = DEV_DOMAIN_CLIENT + "/payment/success";

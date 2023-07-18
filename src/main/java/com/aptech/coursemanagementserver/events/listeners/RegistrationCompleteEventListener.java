@@ -1,6 +1,6 @@
 package com.aptech.coursemanagementserver.events.listeners;
 
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_API;
+import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_API;
 
 import java.io.UnsupportedEncodingException;
 

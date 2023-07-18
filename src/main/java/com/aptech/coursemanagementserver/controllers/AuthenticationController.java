@@ -1,6 +1,6 @@
 package com.aptech.coursemanagementserver.controllers;
 
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_CLIENT;
+import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_CLIENT;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.GLOBAL_EXCEPTION;
 
 import java.io.IOException;

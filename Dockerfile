@@ -13,6 +13,9 @@ RUN mvn dependency:go-offline -B
 # Copy the source code to the container
 COPY src ./src
 
+# Replace the DomainURL.java file with DomainURL_prod.java
+COPY src/main/java/com/aptech/coursemanagementserver/constants/DomainURL_prod.java ./src/main/java/com/aptech/coursemanagementserver/constants/DomainURL.java
+
 # Build the project
 RUN mvn package -DskipTests
 
