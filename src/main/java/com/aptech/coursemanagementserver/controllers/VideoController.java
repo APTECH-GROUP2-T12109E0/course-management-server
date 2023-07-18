@@ -53,7 +53,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class VideoController {
     private final VideoService videoService;
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "[ADMIN, MANAGER , EMPLOYEE] - Get Video By Lesson Id")

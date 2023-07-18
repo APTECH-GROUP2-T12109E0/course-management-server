@@ -58,7 +58,7 @@ public class AuthenticationController {
   private final JwtService jwtService;
   private final ApplicationEventPublisher publisher;
   private final PasswordEncoder passwordEncoder;
-  private GlobalStorageConfig globalStorageConfig;
+  private final GlobalStorageConfig globalStorageConfig;
 
   @PostMapping("/register")
   public ResponseEntity<BaseDto> register(

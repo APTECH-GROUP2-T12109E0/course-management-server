@@ -41,7 +41,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final UserPermissionService userPermissionService;

@@ -49,7 +49,7 @@ public class CheckoutController {
     private final MomoService momoService;
     private final PaypalService service;
     private final OrderService orderService;
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
 
     @PostMapping()
     @Operation(summary = "[USER] - Initiate payment")

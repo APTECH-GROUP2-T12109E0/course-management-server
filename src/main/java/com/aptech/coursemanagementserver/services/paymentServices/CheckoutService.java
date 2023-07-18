@@ -27,7 +27,7 @@ public class CheckoutService {
     // private final RestTemplate restTemplate;
     private final PaypalService service;
     private final MomoService momoService;
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
 
     public ResponseEntity<?> checkoutPayment(CheckoutDto checkoutDto) throws Exception {
         if (checkoutDto.getPaymentType() == PaymentType.PAYPAL) {

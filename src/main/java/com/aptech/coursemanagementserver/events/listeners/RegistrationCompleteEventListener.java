@@ -27,7 +27,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
     private final EmailSender emailSender;
     private final JwtService jwtService;
     private User user;
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
 
     @Override
     public void onApplicationEvent(RegistrationCompleteEvent event) {

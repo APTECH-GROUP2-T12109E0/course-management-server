@@ -40,7 +40,7 @@ import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 @RequiredArgsConstructor
 @Slf4j
 public class MomoService {
-    private GlobalStorageConfig globalStorageConfig;
+    private final GlobalStorageConfig globalStorageConfig;
     private final ObjectMapper objectMapper;
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
