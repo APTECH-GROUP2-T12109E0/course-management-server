@@ -22,6 +22,11 @@ FROM openjdk:17-jdk-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Create the necessary directories
+RUN mkdir -p /app/assets/videos
+RUN mkdir -p /app/assets/captions
+RUN mkdir -p /app/assets/images/course
+
 # Copy the built JAR file from the build image to the runtime image
 COPY --from=build /app/target/course-management-server-0.0.1-SNAPSHOT.jar .
 COPY src/main/resources/application.properties.disc /app/application.properties
