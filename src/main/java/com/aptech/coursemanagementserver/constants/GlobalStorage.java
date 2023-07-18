@@ -25,10 +25,6 @@ public interface GlobalStorage {
     String DEV_DOMAIN_API = "${domain.api}";
     String PROD_DOMAIN_API = "${domain.api}";
 
-    // DOMAIN CLIENT URL
-    String DEV_DOMAIN_CLIENT = "${domain.client}";
-    String PROD_DOMAIN_CLIENT = "${domain.client}";
-
     // API
     String COURSE_DOWNLOAD_API =  "/course/download/";
     String STREAM_API = "/video/stream/";
@@ -68,14 +64,14 @@ public interface GlobalStorage {
     // Map.entry("language","en_US"),
     // Map.entry("currency", "USD"),
     );
-    String PAYPAL_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/paypal";
+    //String PAYPAL_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/paypal";
     String PAYPAL_SUCCESS_URL = "/paypal/success";
     String PAYPAL_SUCCESS_API = "/checkout/paypal/success";
     String PAYPAL_CANCEL_URL = "/paypal/cancel";
     String PAYPAL_CANCEL_API = "/checkout/paypal/cancel";
 
     // MOMO
-    String MOMO_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/momo";
+    //String MOMO_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/momo";
     String MOMO_REDIRECT_URL = "/momo/redirect";
-    String MOMO_REDIRECT_API = DEV_DOMAIN_API + "/checkout/momo/redirect";
+    String MOMO_REDIRECT_API = "/checkout/momo/redirect";
 }
