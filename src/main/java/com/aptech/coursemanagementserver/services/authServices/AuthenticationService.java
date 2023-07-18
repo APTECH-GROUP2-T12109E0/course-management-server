@@ -2,6 +2,7 @@ package com.aptech.coursemanagementserver.services.authServices;
 
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_CLIENT;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.TOKEN_PREFIX;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -40,6 +41,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
+    private GlobalStorageConfig globalStorageConfig;
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final UserPermissionService userPermissionService;
@@ -249,7 +251,7 @@ public class AuthenticationService {
 
         jwtService.saveUserResetPasswordToken(user, resetPasswordToken);
 
-        String url = DEV_DOMAIN_CLIENT + "/reset-password?token=" + resetPasswordToken;
+        String url = globalStorageConfig.getClientURL() + "/reset-password?token=" + resetPasswordToken;
 
         String subject = "Reset Password";
         String displayName = "ClicknLearn";

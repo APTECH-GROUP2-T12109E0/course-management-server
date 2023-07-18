@@ -3,6 +3,7 @@ package com.aptech.coursemanagementserver.services.paymentServices;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.GLOBAL_EXCEPTION;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_CANCEL_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_SUCCESS_API;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class CheckoutService {
     // private final RestTemplate restTemplate;
     private final PaypalService service;
     private final MomoService momoService;
+    private GlobalStorageConfig globalStorageConfig;
 
     public ResponseEntity<?> checkoutPayment(CheckoutDto checkoutDto) throws Exception {
         if (checkoutDto.getPaymentType() == PaymentType.PAYPAL) {
@@ -49,8 +51,8 @@ public class CheckoutService {
     }
 
     private PaypalResponseDto paypalCheckout(PaypalRequestDto paypalRequestDto) throws PayPalRESTException {
-        Payment payment = service.createPayment(paypalRequestDto, PAYPAL_CANCEL_API,
-                PAYPAL_SUCCESS_API);
+        Payment payment = service.createPayment(paypalRequestDto, globalStorageConfig.getApiURL() + PAYPAL_CANCEL_API,
+                globalStorageConfig.getApiURL() + PAYPAL_SUCCESS_API);
 
         for (Links link : payment.getLinks()) {
             if (link.getRel().equals("approval_url")) {

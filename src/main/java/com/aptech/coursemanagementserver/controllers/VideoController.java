@@ -38,6 +38,7 @@ import com.aptech.coursemanagementserver.exceptions.ResourceNotFoundException;
 import com.aptech.coursemanagementserver.services.VideoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -52,6 +53,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class VideoController {
     private final VideoService videoService;
+    private GlobalStorageConfig globalStorageConfig;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "[ADMIN, MANAGER , EMPLOYEE] - Get Video By Lesson Id")
@@ -86,14 +88,14 @@ public class VideoController {
                 Files.copy(captionFile.getInputStream(),
                         CAPTION_PATH.resolve(captionFile.getOriginalFilename()),
                         StandardCopyOption.REPLACE_EXISTING);
-                captionUrls.add(CAPTION_API + captionFile.getOriginalFilename());
+                captionUrls.add(globalStorageConfig.getApiURL() + CAPTION_API + captionFile.getOriginalFilename());
             }
 
             VideoDto videoDto = new VideoDto();
             videoDto.setLessonId(lessonId);
             videoDto.setName(generateFilename(Instant.now()) + videoFile.getOriginalFilename());
             videoDto.setUrl(
-                    STREAM_API + videoExtension + "/" + videoDto.getName().split("_")[0] + "_"
+                    globalStorageConfig.getApiURL() + STREAM_API + videoExtension + "/" + videoDto.getName().split("_")[0] + "_"
                             + FilenameUtils.getBaseName(videoFile.getOriginalFilename()));
             videoDto.setCaptionUrls(captionUrls);
 

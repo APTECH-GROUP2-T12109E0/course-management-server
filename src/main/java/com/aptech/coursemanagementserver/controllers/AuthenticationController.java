@@ -2,6 +2,7 @@ package com.aptech.coursemanagementserver.controllers;
 
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_CLIENT;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.GLOBAL_EXCEPTION;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import java.io.IOException;
 import java.net.URI;
@@ -57,6 +58,7 @@ public class AuthenticationController {
   private final JwtService jwtService;
   private final ApplicationEventPublisher publisher;
   private final PasswordEncoder passwordEncoder;
+  private GlobalStorageConfig globalStorageConfig;
 
   @PostMapping("/register")
   public ResponseEntity<BaseDto> register(
@@ -81,18 +83,18 @@ public class AuthenticationController {
   public ResponseEntity<BaseDto> verifyEmail(@RequestParam("token") String token) throws ParseException {
     Token t = tokenRepository.findByToken(token).get();
     if (t.getUser().isVerified()) {
-      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(DEV_DOMAIN_CLIENT + "/login?verify=verified"))
+      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(globalStorageConfig.getClientURL() + "/login?verify=verified"))
           .build();
     }
     try {
       jwtService.isTokenValid(token, t.getUser());
       authService.verifyEmailRegister(token);
-      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(DEV_DOMAIN_CLIENT + "/login?verify=success"))
+      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(globalStorageConfig.getClientURL() + "/login?verify=success"))
           .build();
 
     } catch (ExpiredJwtException e) {
       userService.deleteById(t.getUser().getId());
-      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(DEV_DOMAIN_CLIENT + "/token-expire"))
+      return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(globalStorageConfig.getClientURL() + "/token-expire"))
           .build();
     }
     // return new ResponseEntity<String>("Email verified successfully. Now

@@ -30,13 +30,13 @@ public interface GlobalStorage {
     String PROD_DOMAIN_CLIENT = "${domain.client}";
 
     // API
-    String COURSE_DOWNLOAD_API = DEV_DOMAIN_API + "/course/download/";
-    String STREAM_API = DEV_DOMAIN_API + "/video/stream/";
-    String CAPTION_API = DEV_DOMAIN_API + "/video/caption/";
+    String COURSE_DOWNLOAD_API =  "/course/download/";
+    String STREAM_API = "/video/stream/";
+    String CAPTION_API = "/video/caption/";
 
     // CLIENT
-    String PAYMENT_SUCCESS_CLIENT = DEV_DOMAIN_CLIENT + "/payment/success";
-    String PAYMENT_CANCEL_CLIENT = DEV_DOMAIN_CLIENT + "/payment/cancel";
+    String PAYMENT_SUCCESS_CLIENT = "/payment/success";
+    String PAYMENT_CANCEL_CLIENT = "/payment/cancel";
 
     // OAUTH2
     String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_auth_request";
@@ -70,9 +70,9 @@ public interface GlobalStorage {
     );
     String PAYPAL_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/paypal";
     String PAYPAL_SUCCESS_URL = "/paypal/success";
-    String PAYPAL_SUCCESS_API = DEV_DOMAIN_API + "/checkout/paypal/success";
+    String PAYPAL_SUCCESS_API = "/checkout/paypal/success";
     String PAYPAL_CANCEL_URL = "/paypal/cancel";
-    String PAYPAL_CANCEL_API = DEV_DOMAIN_API + "/checkout/paypal/cancel";
+    String PAYPAL_CANCEL_API = "/checkout/paypal/cancel";
 
     // MOMO
     String MOMO_CHECKOUT_API = DEV_DOMAIN_API + "/checkout/momo";

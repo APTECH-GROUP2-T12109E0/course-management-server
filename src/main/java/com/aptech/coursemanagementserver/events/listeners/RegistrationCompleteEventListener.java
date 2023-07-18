@@ -1,6 +1,6 @@
 package com.aptech.coursemanagementserver.events.listeners;
 
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_API;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import java.io.UnsupportedEncodingException;
 
@@ -27,6 +27,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
     private final EmailSender emailSender;
     private final JwtService jwtService;
     private User user;
+    private GlobalStorageConfig globalStorageConfig;
 
     @Override
     public void onApplicationEvent(RegistrationCompleteEvent event) {
@@ -37,7 +38,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         // 3. Save the verification token for the user
         jwtService.saveUserVerificationToken(user, verificationToken);
         // 4 Build the verification url to be sent to the user
-        String url = DEV_DOMAIN_API + "/auth/verifyEmail?token=" + verificationToken;
+        String url = globalStorageConfig.getApiURL() + "/auth/verifyEmail?token=" + verificationToken;
         // 5. Send the email.
         try {
             sendVerificationEmail(url);

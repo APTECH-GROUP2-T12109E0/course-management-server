@@ -8,6 +8,7 @@ import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_C
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_CANCEL_URL;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_SUCCESS_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_SUCCESS_URL;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -48,6 +49,7 @@ public class CheckoutController {
     private final MomoService momoService;
     private final PaypalService service;
     private final OrderService orderService;
+    private GlobalStorageConfig globalStorageConfig;
 
     @PostMapping()
     @Operation(summary = "[USER] - Initiate payment")
@@ -91,24 +93,24 @@ public class CheckoutController {
             @RequestParam String orderId) {
         momoService.UpdateOrderAndCreateEnroll(resultCode, extraData, orderId);
         if (resultCode == 0 || resultCode == 9000) {
-            return new RedirectView(PAYMENT_SUCCESS_CLIENT + "?transactionId=" + orderId);
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_SUCCESS_CLIENT + "?transactionId=" + orderId);
         }
         // 1001: Giao dịch thanh toán thất bại do tài khoản người dùng không đủ tiền.
         // 1005: Giao dịch thất bại do url hoặc QR code đã hết hạn.
         // 1006: Giao dịch thất bại do người dùng đã từ chối xác nhận thanh toán.
         if (resultCode == 1001) {
             // momoService.UpdateOrderAndCreateEnroll(resultCode, extraData);
-            return new RedirectView(PAYMENT_CANCEL_CLIENT + "?resultCode=1001");
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT + "?resultCode=1001");
         } else if (resultCode == 1005) {
             // momoService.UpdateOrderAndCreateEnroll(resultCode, extraData);
-            return new RedirectView(PAYMENT_CANCEL_CLIENT + "?resultCode=1005");
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT + "?resultCode=1005");
         } else if (resultCode == 1006) {
             // momoService.UpdateOrderAndCreateEnroll(resultCode, extraData);
-            return new RedirectView(PAYMENT_CANCEL_CLIENT + "?resultCode=1006");
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT + "?resultCode=1006");
         } else {
             resultCode = 9999;
             momoService.UpdateOrderAndCreateEnroll(resultCode, extraData, orderId);
-            return new RedirectView(PAYMENT_CANCEL_CLIENT);
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT);
         }
 
     }
@@ -120,8 +122,8 @@ public class CheckoutController {
     // @PreAuthorize("hasAnyRole('USER')")
     public ResponseEntity<PaypalResponseDto> payment(@RequestBody PaypalRequestDto dto) {
         try {
-            Payment payment = service.createPayment(dto, PAYPAL_CANCEL_API,
-                    PAYPAL_SUCCESS_API);
+            Payment payment = service.createPayment(dto, globalStorageConfig.getApiURL() + PAYPAL_CANCEL_API,
+                    globalStorageConfig.getApiURL() + PAYPAL_SUCCESS_API);
 
             for (Links link : payment.getLinks()) {
                 if (link.getRel().equals("approval_url")) {
@@ -146,7 +148,7 @@ public class CheckoutController {
     @Operation(summary = "[ANORNYMOUS] - Redirect from PAYPAL")
     @PreAuthorize("permitAll()")
     public RedirectView cancelPay() {
-        return new RedirectView(PAYMENT_CANCEL_CLIENT);
+        return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT);
     }
 
     @GetMapping(path = PAYPAL_SUCCESS_URL)
@@ -160,9 +162,9 @@ public class CheckoutController {
             boolean isApproved = payment.getState().equals("approved");
             service.updateOrderAndCreateEnroll(payment, isApproved);
             if (isApproved) {
-                return new RedirectView(PAYMENT_SUCCESS_CLIENT + "?transactionId=" + payment.getId());
+                return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_SUCCESS_CLIENT + "?transactionId=" + payment.getId());
             }
-            return new RedirectView(PAYMENT_CANCEL_CLIENT);
+            return new RedirectView(globalStorageConfig.getClientURL() + PAYMENT_CANCEL_CLIENT);
         } catch (PayPalRESTException e) {
             throw new BadRequestException(e.getMessage());
         } catch (Exception e) {

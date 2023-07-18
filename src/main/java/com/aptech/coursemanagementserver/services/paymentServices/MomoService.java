@@ -34,11 +34,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.MOMO_REDIRECT_API;
+import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class MomoService {
+    private GlobalStorageConfig globalStorageConfig;
     private final ObjectMapper objectMapper;
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
@@ -78,9 +80,9 @@ public class MomoService {
         String requestId = String.valueOf(System.currentTimeMillis());
         String orderId = String.valueOf(System.currentTimeMillis());
         String orderInfo = "Payment with MoMo";
-        String redirectUrl = MOMO_REDIRECT_API;
+        String redirectUrl = globalStorageConfig.getApiURL() + MOMO_REDIRECT_API;
 
-        String ipnUrl = MOMO_REDIRECT_API;
+        String ipnUrl = globalStorageConfig.getApiURL() + MOMO_REDIRECT_API;
         String extraData = String.valueOf(order.getId());
 
         // set the parameters on the payment request
