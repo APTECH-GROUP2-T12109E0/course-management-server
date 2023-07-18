@@ -10,9 +10,9 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_API;
-import static com.aptech.coursemanagementserver.constants.DomainURL.PROD_DOMAIN_API;
-import static com.aptech.coursemanagementserver.constants.DomainURL.DOMAIN_EMAIL;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_API;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.PROD_DOMAIN_API;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.DOMAIN_EMAIL;
 
 //OpenAPI is an API description format for REST APIs use with
 // info: Show info of Swagger include: name , email, url, description, title, version, license, terms of service

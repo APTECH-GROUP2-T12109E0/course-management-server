@@ -1,9 +1,9 @@
 package com.aptech.coursemanagementserver.controllers;
 
-import static com.aptech.coursemanagementserver.constants.DomainURL.CAPTION_API;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_PATH;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.FETCHING_FAILED;
-import static com.aptech.coursemanagementserver.constants.DomainURL.STREAM_API;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.STREAM_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.VIDEO_PATH;
 
 import java.nio.file.Files;

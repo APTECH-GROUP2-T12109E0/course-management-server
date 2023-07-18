@@ -1,6 +1,6 @@
 package com.aptech.coursemanagementserver.services.authServices;
 
-import static com.aptech.coursemanagementserver.constants.DomainURL.DEV_DOMAIN_CLIENT;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_CLIENT;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.TOKEN_PREFIX;
 
 import java.io.IOException;
