@@ -30,9 +30,9 @@ public interface GlobalStorage {
     String PROD_DOMAIN_CLIENT = "${domain.client}";
 
     // API
-    String COURSE_DOWNLOAD_API = "/course/download/";
-    String STREAM_API = "/video/stream/";
-    String CAPTION_API = "/video/caption/";
+    String COURSE_DOWNLOAD_API = DEV_DOMAIN_API + "/course/download/";
+    String STREAM_API = DEV_DOMAIN_API + "/video/stream/";
+    String CAPTION_API = DEV_DOMAIN_API + "/video/caption/";
 
     // CLIENT
     String PAYMENT_SUCCESS_CLIENT = DEV_DOMAIN_CLIENT + "/payment/success";

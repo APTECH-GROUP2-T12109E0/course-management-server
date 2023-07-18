@@ -1,11 +1,9 @@
 package com.aptech.coursemanagementserver.controllers;
 
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_API;
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_PATH;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.FETCHING_FAILED;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.STREAM_API;
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.DEV_DOMAIN_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.VIDEO_PATH;
 
 import java.nio.file.Files;
@@ -88,14 +86,14 @@ public class VideoController {
                 Files.copy(captionFile.getInputStream(),
                         CAPTION_PATH.resolve(captionFile.getOriginalFilename()),
                         StandardCopyOption.REPLACE_EXISTING);
-                captionUrls.add(DEV_DOMAIN_API + CAPTION_API + captionFile.getOriginalFilename());
+                captionUrls.add(CAPTION_API + captionFile.getOriginalFilename());
             }
 
             VideoDto videoDto = new VideoDto();
             videoDto.setLessonId(lessonId);
             videoDto.setName(generateFilename(Instant.now()) + videoFile.getOriginalFilename());
             videoDto.setUrl(
-                    DEV_DOMAIN_API + STREAM_API + videoExtension + "/" + videoDto.getName().split("_")[0] + "_"
+                    STREAM_API + videoExtension + "/" + videoDto.getName().split("_")[0] + "_"
                             + FilenameUtils.getBaseName(videoFile.getOriginalFilename()));
             videoDto.setCaptionUrls(captionUrls);
 
