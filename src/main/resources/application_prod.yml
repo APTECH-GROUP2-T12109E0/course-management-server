@@ -8,7 +8,7 @@ application:
       refreshToken:
         expiration: 604800000 # 7 days
     cors:
-      allowedOrigins: https://test-payment.momo.vn,https://clicknlearn-api.up.railway.app,https://clicknlearn.up.railway.app
+      allowedOrigins: http://localhost:3000,http://localhost:8080,https://test-payment.momo.vn,https://clicknlearn-api.up.railway.app,https://clicknlearn.up.railway.app
     oauth2:
       # After successfully authenticating with the OAuth2 Provider,
       # we'll be generating an auth token for the user and sending the token to the
