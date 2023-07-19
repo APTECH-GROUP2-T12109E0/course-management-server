@@ -3360,7 +3360,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- Thống kê (%) category đc user mua nhiều nhất
-ALTER   PROC [dbo].[sp_get_category_enrollment]  
+CREATE OR ALTER PROC [dbo].[sp_get_category_enrollment]  
 AS
 BEGIN
 DECLARE @total_enroll FLOAT

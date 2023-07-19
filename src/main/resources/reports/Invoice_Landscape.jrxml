@@ -270,7 +270,7 @@
 			<image>
 				<reportElement x="0" y="-10" width="200" height="180"
 					uuid="741add07-8ccc-4801-a830-dcaddd21c411" />
-				<imageExpression><![CDATA["C:/Users/Admin/Desktop/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.ibb.co/y0VvQtB/logo.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="700" y="80" width="100" height="30"

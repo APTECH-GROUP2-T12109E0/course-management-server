@@ -1,65 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Certificate_Landscape" pageWidth="540" pageHeight="380" orientation="Landscape" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="58ba15d2-02d2-417f-b6b0-d8801adeda87">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version
+6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+	name="Certificate_Landscape" pageWidth="540" pageHeight="380" orientation="Landscape"
+	columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0"
+	uuid="58ba15d2-02d2-417f-b6b0-d8801adeda87">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax" />
+	<property name="com.jaspersoft.studio.data.sql.tables" value="" />
 	<queryString>
 		<![CDATA[select top 1 'Nguyễn Ngọc Nguyên' as fullName,
  'Spring Boot' as courseName, 
 'GOOD' grade, getdate() as completedDate]]>
 	</queryString>
 	<field name="fullName" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="fullName"/>
-		<property name="com.jaspersoft.studio.field.label" value="fullName"/>
+		<property name="com.jaspersoft.studio.field.name" value="fullName" />
+		<property name="com.jaspersoft.studio.field.label" value="fullName" />
 	</field>
 	<field name="courseName" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="courseName"/>
-		<property name="com.jaspersoft.studio.field.label" value="courseName"/>
+		<property name="com.jaspersoft.studio.field.name" value="courseName" />
+		<property name="com.jaspersoft.studio.field.label" value="courseName" />
 	</field>
 	<field name="grade" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="grade"/>
-		<property name="com.jaspersoft.studio.field.label" value="grade"/>
+		<property name="com.jaspersoft.studio.field.name" value="grade" />
+		<property name="com.jaspersoft.studio.field.label" value="grade" />
 	</field>
 	<field name="completedDate" class="java.util.Date">
-		<property name="com.jaspersoft.studio.field.name" value="completedDate"/>
-		<property name="com.jaspersoft.studio.field.label" value="completedDate"/>
+		<property name="com.jaspersoft.studio.field.name" value="completedDate" />
+		<property name="com.jaspersoft.studio.field.label" value="completedDate" />
 	</field>
 	<background>
 		<band height="380" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="540" height="380" uuid="906ad67e-6cab-4fe6-9f17-ab7b526bbbfd"/>
-				<imageExpression><![CDATA["C:/Users/Admin/Desktop/clicknlearn-certificate.jpg"]]></imageExpression>
+				<reportElement x="0" y="0" width="540" height="380"
+					uuid="906ad67e-6cab-4fe6-9f17-ab7b526bbbfd" />
+				<imageExpression><![CDATA["https://i.ibb.co/mbTtLrp/clicknlearn-certificate.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</background>
 	<detail>
 		<band height="380">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px" />
 			<textField>
-				<reportElement x="0" y="145" width="540" height="67" uuid="c9ee8896-33b2-493f-b33f-1d93991ad6ac"/>
+				<reportElement x="0" y="145" width="540" height="67"
+					uuid="c9ee8896-33b2-493f-b33f-1d93991ad6ac" />
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="VNI-Script" size="32" isBold="false"/>
+					<font fontName="VNI-Script" size="32" isBold="false" />
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="230" width="540" height="30" uuid="0fb431a3-26cf-49c7-b8d3-483ab5d62b15"/>
+				<reportElement x="0" y="230" width="540" height="30"
+					uuid="0fb431a3-26cf-49c7-b8d3-483ab5d62b15" />
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="20"/>
+					<font fontName="Times New Roman" size="20" />
 				</textElement>
 				<textFieldExpression><![CDATA[$F{courseName}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMM dd, YYYY">
-				<reportElement x="0" y="270" width="450" height="30" uuid="9228dd4f-9bc4-402c-8810-aa245cf7e5d2"/>
+				<reportElement x="0" y="270" width="450" height="30"
+					uuid="9228dd4f-9bc4-402c-8810-aa245cf7e5d2" />
 				<textElement textAlignment="Right">
-					<font fontName="Times New Roman" size="14" isItalic="true"/>
+					<font fontName="Times New Roman" size="14" isItalic="true" />
 				</textElement>
 				<textFieldExpression><![CDATA[$F{completedDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="210" width="530" height="30" uuid="5d774fe0-82ed-4c1e-ad75-c91737278418"/>
+				<reportElement x="0" y="210" width="530" height="30"
+					uuid="5d774fe0-82ed-4c1e-ad75-c91737278418" />
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="14"/>
+					<font fontName="Times New Roman" size="14" />
 				</textElement>
 				<text><![CDATA[Has successfully completed Online Certificate Course ]]></text>
 			</staticText>

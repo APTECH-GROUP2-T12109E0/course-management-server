@@ -13,7 +13,7 @@ import com.aptech.coursemanagementserver.models.Author;
 
 public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecificationExecutor<Author> {
         @Query(value = """
-                        SELECT TOP 3 a.* FROM author a WHERE name like %?1%
+                        SELECT a.* FROM author a WHERE name like %?1%
                         ORDER BY name DESC
                                                           """, nativeQuery = true)
         List<Author> findByNameLikeOrderByName(String name);
