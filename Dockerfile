@@ -1,5 +1,5 @@
 # Use an official maven/Java image as the base image
-FROM maven:3.8.4-openjdk-17-slim AS build
+FROM maven:3.8.4-openjdk-17-alpine AS build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -16,8 +16,8 @@ COPY src ./src
 # Build the project
 RUN mvn package -DskipTests
 
-# Use a lightweight Java image as the base image for runtime
-FROM openjdk:17-jdk-slim
+# Use a Java image as the base image for runtime
+FROM openjdk:17-jdk-alpine
 
 # Set the working directory in the container
 WORKDIR /app
