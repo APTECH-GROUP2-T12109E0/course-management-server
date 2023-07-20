@@ -14,7 +14,7 @@ import com.aptech.coursemanagementserver.models.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
         @Query(value = """
-                        SELECT TOP 3 c.* FROM course c WHERE name like %?1%
+                        SELECT c.* FROM course c WHERE name like %?1%
                         AND c.status = 1
                         ORDER BY name DESC
                                                           """, nativeQuery = true)
