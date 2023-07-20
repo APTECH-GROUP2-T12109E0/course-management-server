@@ -32,6 +32,8 @@ COPY --from=build /app/target/course-management-server-0.0.1-SNAPSHOT.jar .
 COPY src/main/resources/application.properties_prod.disc /app/application.properties
 COPY src/main/resources/application_prod.yml /app/application.yml
 COPY src/main/resources/jasperreports_extension.properties /app/jasperreports_extension.properties
+COPY src/main/resources/reports /app/reports
+COPY src/main/resources/fonts /app/fonts
 
 # Expose the port that the application will listen on
 EXPOSE 8080
