@@ -40,6 +40,7 @@ import com.aptech.coursemanagementserver.repositories.UserPermissionRepository;
 import com.aptech.coursemanagementserver.services.authServices.AuthenticationService;
 import com.aptech.coursemanagementserver.services.authServices.CurrentUser;
 import com.aptech.coursemanagementserver.services.authServices.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +56,7 @@ public class UserController {
     private final AuthenticationService authenticationService;
     private final UserService userService;
     private final UserPermissionRepository userPermissionRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/user/me")
     // @PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER', 'EMPLOYEE')")
@@ -190,6 +192,9 @@ public class UserController {
                     .setName(dto.getName())
                     .setImageUrl(dto.getImageUrl())
                     .setUserStatus(dto.getStatus());
+
+            if (dto.getPassword() != null)
+                user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
             if (dto.getStatus() == 0) {
                 tokenRepository.deleteAll(tokenRepository.findAllValidTokenByUser(user.getId()));
