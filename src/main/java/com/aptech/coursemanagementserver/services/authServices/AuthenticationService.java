@@ -22,6 +22,7 @@ import com.aptech.coursemanagementserver.dtos.AuthenticationRequestDto;
 import com.aptech.coursemanagementserver.dtos.AuthenticationResponseDto;
 import com.aptech.coursemanagementserver.dtos.RegisterRequestDto;
 import com.aptech.coursemanagementserver.enums.AntType;
+import com.aptech.coursemanagementserver.enums.Role;
 import com.aptech.coursemanagementserver.exceptions.BadRequestException;
 import com.aptech.coursemanagementserver.exceptions.InvalidTokenException;
 import com.aptech.coursemanagementserver.exceptions.IsExistedException;
@@ -108,8 +109,11 @@ public class AuthenticationService {
         // .role(request.getRole())
         // .build();
         // var savedUser = userService.save(user);
+        int userStatus = (request.getRole() == Role.EMPLOYEE) ? 0 : 1;
+
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         var savedUser = modelMapper.map(request, User.class);
+        savedUser.setUserStatus(userStatus);
         userService.save(savedUser);
 
         Permissions permissionUser = userPermissionService.findByPermission(request.getRole().name());
