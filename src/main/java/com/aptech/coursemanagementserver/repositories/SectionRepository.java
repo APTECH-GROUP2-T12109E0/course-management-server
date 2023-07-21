@@ -22,11 +22,11 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
     long findLastSectionId();
 
     @Query(value = """
-            SELECT COALESCE(MAX(s.ordered), 0) FROM section s INNER JOIN course c
+            SELECT COALESCE(MAX(s.ordered), null) FROM section s INNER JOIN course c
                 ON s.course_id = c.id
                 WHERE c.id = :courseId
                     """, nativeQuery = true)
-    int findMaxSectionOrderedByCourseId(long courseId);
+    Integer findMaxSectionOrderedByCourseId(long courseId);
 
     @Query(value = """
             SELECT s.* FROM section s INNER JOIN course c
