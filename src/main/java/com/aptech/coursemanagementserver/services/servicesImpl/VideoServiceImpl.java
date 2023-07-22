@@ -91,6 +91,7 @@ public class VideoServiceImpl implements VideoService {
 
             VideoDto videoDto = VideoDto.builder().id(video.getId()).name(video.getName()).url(video.getUrl())
                     .status(video.getStatus())
+                    .mobileUrl(video.getMobileUrl())
                     .captionData(map).lessonId(lessonId).build();
 
             return videoDto;
