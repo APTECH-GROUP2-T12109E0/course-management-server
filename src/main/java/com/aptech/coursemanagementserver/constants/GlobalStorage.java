@@ -34,6 +34,7 @@ public interface GlobalStorage {
     // API
     String COURSE_DOWNLOAD_API = PROD_DOMAIN_API + "/course/download/";
     String STREAM_API = PROD_DOMAIN_API + "/video/stream/";
+    String MOBILE_STREAM_API = "https://clicknlearnassets.blob.core.windows.net/clicknlearnassets/videos/";
     String CAPTION_API = PROD_DOMAIN_API + "/video/caption/";
 
     // CLIENT

@@ -214,6 +214,7 @@ public class LessonTrackingImpl implements LessonTrackingService {
                 // String captionData = objectMapper.writeValueAsString(map);
 
                 VideoDto videoDto = VideoDto.builder().id(video.getId()).name(video.getName()).url(video.getUrl())
+                        .mobileUrl(video.getMobileUrl())
                         .captionData(map).lessonId(video.getLesson().getId()).build();
 
                 learningDto.getVideoDto().add(videoDto);
@@ -263,6 +264,7 @@ public class LessonTrackingImpl implements LessonTrackingService {
                 // String captionData = objectMapper.writeValueAsString(map);
 
                 VideoDto videoDto = VideoDto.builder().id(video.getId()).name(video.getName()).url(video.getUrl())
+                        .mobileUrl(video.getMobileUrl())
                         .captionData(map).lessonId(video.getLesson().getId()).build();
 
                 learningDto.getVideoDto().add(videoDto);

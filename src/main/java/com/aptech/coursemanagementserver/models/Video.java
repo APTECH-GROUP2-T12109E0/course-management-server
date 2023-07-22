@@ -38,6 +38,9 @@ public class Video {
     private String url;
 
     @Column(columnDefinition = "varchar(MAX)")
+    private String mobileUrl;
+
+    @Column(columnDefinition = "varchar(MAX)")
     private String captionUrls;
 
     @Column(columnDefinition = "tinyint")

@@ -122,8 +122,10 @@ public class VideoServiceImpl implements VideoService {
             Video video = videoOfLesson != null ? videoOfLesson : new Video();
             video.setName(videoDto.getName())
                     .setUrl(videoDto.getUrl())
+                    .setMobileUrl(videoDto.getMobileUrl())
                     .setStatus(videoDto.getStatus())
                     .setCaptionUrls(String.join(",", videoDto.getCaptionUrls()));
+
             if (videoOfLesson == null) {
                 video.setLesson(lesson);
             }

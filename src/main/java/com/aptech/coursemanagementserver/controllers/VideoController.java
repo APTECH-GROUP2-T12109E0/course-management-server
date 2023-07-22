@@ -1,15 +1,12 @@
 package com.aptech.coursemanagementserver.controllers;
 
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_API;
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_PATH;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_FOLDER;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.FETCHING_FAILED;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.STREAM_API;
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.VIDEO_PATH;
-import static com.aptech.coursemanagementserver.constants.GlobalStorage.CAPTION_FOLDER;
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.MOBILE_STREAM_API;
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.VIDEO_FOLDER;
 
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -100,6 +97,7 @@ public class VideoController {
             videoDto.setUrl(
                     STREAM_API + videoExtension + "/" + videoDto.getName().split("_")[0] + "_"
                             + FilenameUtils.getBaseName(videoFile.getOriginalFilename()));
+            videoDto.setMobileUrl(MOBILE_STREAM_API + videoDto.getName());
             videoDto.setCaptionUrls(captionUrls);
 
             videoService.save(videoDto, lessonId);

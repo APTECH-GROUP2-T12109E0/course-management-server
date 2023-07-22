@@ -18,6 +18,7 @@ public class VideoDto {
     private long id;
     private String name;
     private String url;
+    private String mobileUrl;
     private List<String> captionUrls;
     private Map<String, String> captionData;
     @Builder.Default
