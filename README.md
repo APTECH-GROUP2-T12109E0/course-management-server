@@ -20,7 +20,8 @@ git checkout main
 # Config application.properties
 - Copy file `application.properties.dist` then please change the name of new File to `application.properties` then enter your intance, user and password.
 
-![readme](https://github.com/APTECH-GROUP2-T12109E0/course-management-server/assets/105790734/63c1f8cb-c6c4-49b8-9b87-0065edc76ecc)
+![readme](https://github.com/APTECH-GROUP2-T12109E0/course-management-server/assets/105790734/cdb728b8-6560-45fb-a3df-ee5d32e75eb8)
+
 
 
 ## Getting Started
