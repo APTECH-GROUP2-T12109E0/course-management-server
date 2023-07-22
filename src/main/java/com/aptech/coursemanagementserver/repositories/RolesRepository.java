@@ -13,4 +13,10 @@ public interface RolesRepository extends JpaRepository<Roles, Long> {
             WHERE r.name <> 'ADMIN'
                       """, nativeQuery = true)
     List<Roles> findAllRoleExceptRoleADMIN();
+
+    @Query(value = """
+            SELECT r.* FROM roles r
+            WHERE r.name IN ('MANAGER', 'EMPLOYEE')
+                      """, nativeQuery = true)
+    List<Roles> findManagerAndEmployeeRole();
 }
