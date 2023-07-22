@@ -35,7 +35,7 @@
 			<image>
 				<reportElement x="0" y="0" width="540" height="380"
 					uuid="906ad67e-6cab-4fe6-9f17-ab7b526bbbfd" />
-				<imageExpression><![CDATA["https://i.ibb.co/mbTtLrp/clicknlearn-certificate.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.ibb.co/mDg997F/clicknlearn-certificate.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</background>
