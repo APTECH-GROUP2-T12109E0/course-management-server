@@ -74,7 +74,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public int findMaxLessonOrderedBySectionId(long sectionId) {
+    public Integer findMaxLessonOrderedBySectionId(long sectionId) {
         try {
             return lessonRepository.findMaxLessonOrderedBySectionId(sectionId);
         } catch (NoSuchElementException e) {

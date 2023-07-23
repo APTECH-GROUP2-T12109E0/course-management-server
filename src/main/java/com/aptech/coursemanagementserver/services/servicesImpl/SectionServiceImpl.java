@@ -66,7 +66,7 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public int findMaxSectionOrderedByCourseId(long courseId) {
+    public Integer findMaxSectionOrderedByCourseId(long courseId) {
         try {
             return sectionRepository.findMaxSectionOrderedByCourseId(courseId);
         } catch (NoSuchElementException e) {
