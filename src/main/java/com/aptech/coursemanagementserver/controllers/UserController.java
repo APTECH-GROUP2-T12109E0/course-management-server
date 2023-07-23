@@ -124,6 +124,22 @@ public class UserController {
         }
     }
 
+    @GetMapping("/role-manager-employee")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')")
+    public ResponseEntity<List<Roles>> findManagerAndEmployeeRole() {
+        try {
+            List<Roles> roles = userService.findManagerAndEmployeeRole();
+            return ResponseEntity.ok(roles);
+
+        } catch (BadRequestException e) {
+            throw new BadRequestException(e.getMessage());
+        } catch (IsExistedException e) {
+            throw new BadRequestException(e.getMessage());
+        } catch (Exception e) {
+            throw new BadRequestException(GLOBAL_EXCEPTION);
+        }
+    }
+
     @GetMapping("/permission")
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')")
     public ResponseEntity<List<Permissions>> findAllPermissionExceptPermissionADMIN() {

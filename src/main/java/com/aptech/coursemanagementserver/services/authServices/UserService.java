@@ -23,6 +23,8 @@ public interface UserService {
 
     public List<Roles> findAllRoleExceptRoleADMIN();
 
+    public List<Roles> findManagerAndEmployeeRole();
+
     public List<Permissions> findAllPermissionExceptPermissionADMIN();
 
     public List<UserDto> findAllExceptRoleADMIN();
