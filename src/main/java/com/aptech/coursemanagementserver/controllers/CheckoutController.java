@@ -56,6 +56,8 @@ public class CheckoutController {
             throws Exception {
         try {
             return ResponseEntity.ok(checkoutService.checkoutPayment(checkoutDto));
+        } catch (BadRequestException e) {
+            throw new BadRequestException(e.getMessage());
         } catch (Exception e) {
             throw new BadRequestException(GLOBAL_EXCEPTION);
         }
