@@ -19,7 +19,7 @@ import com.aptech.coursemanagementserver.dtos.baseDto.BaseDto;
 import com.aptech.coursemanagementserver.exceptions.BadRequestException;
 import com.aptech.coursemanagementserver.exceptions.ResourceNotFoundException;
 import com.aptech.coursemanagementserver.services.EnrollmentService;
-
+import static com.aptech.coursemanagementserver.constants.GlobalStorage.GLOBAL_EXCEPTION;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -38,8 +38,10 @@ public class EnrollmentController {
 
         } catch (NoSuchElementException e) {
             throw new ResourceNotFoundException(e.getMessage());
-        } catch (Exception e) {
+        } catch (BadRequestException e) {
             throw new BadRequestException(e.getMessage());
+        } catch (Exception e) {
+            throw new BadRequestException(GLOBAL_EXCEPTION);
         }
     }
 

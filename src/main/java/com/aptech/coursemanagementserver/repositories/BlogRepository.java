@@ -36,13 +36,14 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
     @Query(value = """
             SELECT
                 b.*,
-                cat.name [category_name]
+                cat.name [category_name],
+                CONCAT(u.first_name, ' ', u.last_name) AS createdBy
             FROM blog b
                 INNER JOIN category cat ON b.category_id = cat.id
-                LEFT JOIN users u ON b.user_id = u.id AND u.role = 'USER'
+                LEFT JOIN users u ON b.user_id = u.id
             ORDER BY
                 b.created_at DESC
-                                              """, nativeQuery = true)
+            """, nativeQuery = true)
     List<BlogsInterface> findAllBlogs();
 
     Optional<Blog> findBySlug(String slug);

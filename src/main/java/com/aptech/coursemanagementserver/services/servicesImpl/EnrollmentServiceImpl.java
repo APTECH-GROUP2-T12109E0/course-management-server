@@ -40,19 +40,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                     .orElseThrow(() -> new NoSuchElementException(
                             "The user with userId: [" + enrollmentDto.getUser_id() + "] is not exist."));
 
-            boolean isFreeCourse = course.getPrice() == 0;
-
-            if (isFreeCourse) {
-                Enrollment enrollment = new Enrollment();
-                enrollment
-                        .setCourse(course)
-                        .setProgress(0)
-                        .setRating(enrollmentDto.getRating())
-                        .setUser(user);
-
-                enrollmentRepository.save(enrollment);
-                return BaseDto.builder().type(AntType.success).message("Enroll successfully.").build();
+            if (course.getStatus() == 0) {
+                throw new BadRequestException("This course 've already deactivated.");
             }
+
+            Enrollment enrollment = new Enrollment();
+            enrollment
+                    .setCourse(course)
+                    .setProgress(0)
+                    .setRating(enrollmentDto.getRating())
+                    .setUser(user);
+
+            enrollmentRepository.save(enrollment);
+            return BaseDto.builder().type(AntType.success).message("Enroll successfully.").build();
+
             // if (course.getPrice() > 0 && ordersRepository
             // .findCompletedOrderByUserIdAndCourseId(enrollmentDto.getUser_id(),
             // enrollmentDto.getCourse_id()) != null) {
@@ -68,7 +69,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             // return BaseDto.builder().type(AntType.success).message("Enroll
             // successfully.").build();
             // }
-            return BaseDto.builder().type(AntType.warning).build();
 
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(e.getMessage());

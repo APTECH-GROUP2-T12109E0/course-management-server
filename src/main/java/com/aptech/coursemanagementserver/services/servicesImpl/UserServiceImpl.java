@@ -86,6 +86,10 @@ public class UserServiceImpl implements UserService {
         return rolesRepository.findAllRoleExceptRoleADMIN();
     }
 
+    public List<Roles> findManagerAndEmployeeRole() {
+        return rolesRepository.findManagerAndEmployeeRole();
+    }
+
     public List<Permissions> findAllPermissionExceptPermissionADMIN() {
         return permissionsRepository.findAllPermissionExceptPermissionADMIN();
     }

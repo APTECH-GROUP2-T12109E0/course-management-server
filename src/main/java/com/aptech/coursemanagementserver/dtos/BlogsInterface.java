@@ -1,5 +1,7 @@
 package com.aptech.coursemanagementserver.dtos;
 
+import java.time.Instant;
+
 public interface BlogsInterface {
     public long getId();
 
@@ -20,4 +22,8 @@ public interface BlogsInterface {
     public String getCategory_name();
 
     Long getUser_id();
+
+    public String getCreatedBy();
+
+    public Instant getCreated_at();
 }

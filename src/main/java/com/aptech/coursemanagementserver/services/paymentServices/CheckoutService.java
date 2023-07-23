@@ -5,6 +5,8 @@ import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_C
 import static com.aptech.coursemanagementserver.constants.GlobalStorage.PAYPAL_SUCCESS_API;
 import com.aptech.coursemanagementserver.constants.GlobalStorageConfig;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import com.aptech.coursemanagementserver.dtos.payment.PaypalRequestDto;
 import com.aptech.coursemanagementserver.dtos.payment.PaypalResponseDto;
 import com.aptech.coursemanagementserver.enums.payment.PaymentType;
 import com.aptech.coursemanagementserver.exceptions.BadRequestException;
+import com.aptech.coursemanagementserver.models.Course;
+import com.aptech.coursemanagementserver.repositories.CourseRepository;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
@@ -25,11 +29,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CheckoutService {
     // private final RestTemplate restTemplate;
+    private final CourseRepository courseRepository;
     private final PaypalService service;
     private final MomoService momoService;
     private final GlobalStorageConfig globalStorageConfig;
 
     public ResponseEntity<?> checkoutPayment(CheckoutDto checkoutDto) throws Exception {
+        Course course = courseRepository.findById(checkoutDto.getCourseId()).orElseThrow(
+                () -> new NoSuchElementException(
+                        "This course with courseId: [" + checkoutDto.getCourseId() + "] is not exist."));
+
+        if (course.getStatus() == 0) {
+            throw new BadRequestException("This course 've already deactivated.");
+        }
+
         if (checkoutDto.getPaymentType() == PaymentType.PAYPAL) {
             PaypalRequestDto paypalRequestDto = new PaypalRequestDto();
             paypalRequestDto.setCourseId(checkoutDto.getCourseId());
@@ -41,6 +54,7 @@ public class CheckoutService {
             // PaypalResponseDto.class);
             return ResponseEntity.ok(response);
         }
+
         MomoRequestDto MomoRequestDto = new MomoRequestDto();
         MomoRequestDto.setCourseId(checkoutDto.getCourseId());
         MomoRequestDto.setUserId(checkoutDto.getUserId());
