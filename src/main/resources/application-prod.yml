@@ -52,8 +52,8 @@ spring:
               - email
               - public_profile
           github:
-            clientId: 401ca74cd1fa8fcf7ba8
-            clientSecret: 879d52000e0b9ba61959fba2b3ed46e72b75ca56
+            clientId: 9fa10c2b7117b9d6661a
+            clientSecret: 28651cbaf81ba0201ab8424bfea0effff29ecf30
             redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - user:email
