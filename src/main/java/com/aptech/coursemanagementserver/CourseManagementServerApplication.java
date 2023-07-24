@@ -32,9 +32,6 @@ import com.aptech.coursemanagementserver.services.PostService;
 import com.aptech.coursemanagementserver.services.authServices.AuthenticationService;
 import com.aptech.coursemanagementserver.services.authServices.UserPermissionService;
 import com.aptech.coursemanagementserver.utils.CommonUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -47,11 +44,6 @@ public class CourseManagementServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CourseManagementServerApplication.class, args);
 	}
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String redirectToSwagger() {
-        return "redirect:/swagger-ui/index.html";
-    }
 
 	// Define @Bean to tell SpringBoot it should create an instance of the class and
 	// register it with the application context. When the application starts up,
