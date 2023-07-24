@@ -32,6 +32,7 @@ import com.aptech.coursemanagementserver.services.PostService;
 import com.aptech.coursemanagementserver.services.authServices.AuthenticationService;
 import com.aptech.coursemanagementserver.services.authServices.UserPermissionService;
 import com.aptech.coursemanagementserver.utils.CommonUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -44,6 +45,11 @@ public class CourseManagementServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CourseManagementServerApplication.class, args);
 	}
+
+	@Bean
+    public RedirectView redirectToSwagger() {
+        return new RedirectView("/swagger-ui/index.html");
+    }
 
 	// Define @Bean to tell SpringBoot it should create an instance of the class and
 	// register it with the application context. When the application starts up,
