@@ -24,12 +24,12 @@ public interface GlobalStorage {
     String DOMAIN_EMAIL = "contact@cmproj.com";
 
     // DOMAIN API URL
-    String DEV_DOMAIN_API = "http://localhost:8080";
+    String DEV_DOMAIN_API = "https://clicknlearn-api.kindbeach-1b081cd2.eastasia.azurecontainerapps.io";
     String PROD_DOMAIN_API = "https://clicknlearn-api.kindbeach-1b081cd2.eastasia.azurecontainerapps.io";
 
     // DOMAIN CLIENT URL
-    String DEV_DOMAIN_CLIENT = "http://localhost:3000";
-    String PROD_DOMAIN_CLIENT = "http://cmclient.com";
+    String DEV_DOMAIN_CLIENT = "https://clicknlearnclient.azurewebsites.net";
+    String PROD_DOMAIN_CLIENT = "https://clicknlearnclient.azurewebsites.net";
 
     // API
     String COURSE_DOWNLOAD_API = PROD_DOMAIN_API + "/course/download/";
@@ -38,8 +38,8 @@ public interface GlobalStorage {
     String CAPTION_API = PROD_DOMAIN_API + "/video/caption/";
 
     // CLIENT
-    String PAYMENT_SUCCESS_CLIENT = DEV_DOMAIN_CLIENT + "/payment/success";
-    String PAYMENT_CANCEL_CLIENT = DEV_DOMAIN_CLIENT + "/payment/cancel";
+    String PAYMENT_SUCCESS_CLIENT = PROD_DOMAIN_CLIENT + "/payment/success";
+    String PAYMENT_CANCEL_CLIENT = PROD_DOMAIN_CLIENT + "/payment/cancel";
 
     // OAUTH2
     String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_auth_request";

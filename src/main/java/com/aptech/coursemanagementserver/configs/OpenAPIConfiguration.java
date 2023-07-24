@@ -18,11 +18,11 @@ import static com.aptech.coursemanagementserver.constants.GlobalStorage.DOMAIN_E
 // info: Show info of Swagger include: name , email, url, description, title, version, license, terms of service
 // server: url of Development Environment, Production Environment, ...
 // security: add 
-@OpenAPIDefinition(info = @Info(contact = @Contact(name = "ClickAndLearnProject", email = DOMAIN_EMAIL, url = PROD_DOMAIN_API), description = "OpenApi documentation for Spring Security", title = "OpenApi Specification - Nguyen Test ClickAndLearn", version = "1.0", license = @License(name = "Licences", url = "https://some-url.com"), termsOfService = "Terms of service"), servers = {
-        @Server(description = "DEV ENV", url = DEV_DOMAIN_API),
-        @Server(description = "PROD ENV", url = PROD_DOMAIN_API)
+@OpenAPIDefinition(info = @Info(contact = @Contact(name = "ClickAndLearnProject", email = DOMAIN_EMAIL, url = PROD_DOMAIN_API), description = "OpenApi documentation for Spring Security", title = "OpenApi Specification - Nguyen Test ClickAndLearn", version = "1.0", license = @License(name = "Licences", url = "https://clicknlearnclient.azurewebsites.net"), termsOfService = "Terms of service"), servers = {
+                @Server(description = "DEV ENV", url = DEV_DOMAIN_API),
+                @Server(description = "PROD ENV", url = PROD_DOMAIN_API)
 }, security = {
-        @SecurityRequirement(name = "bearerAuth")
+                @SecurityRequirement(name = "bearerAuth")
 })
 
 /*
