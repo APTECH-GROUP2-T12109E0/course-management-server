@@ -16,3 +16,5 @@ spring.servlet.multipart.max-request-size=-1
 
 # management.endpoints.web.exposure.include=*
 management.endpoints.web.exposure.include=health,metrics
+
+server.servlet.context-path=/swagger-ui/index.html
