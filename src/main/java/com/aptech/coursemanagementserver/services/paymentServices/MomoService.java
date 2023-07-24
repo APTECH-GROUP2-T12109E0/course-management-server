@@ -87,7 +87,15 @@ public class MomoService {
         momoRequestDto.setPartnerCode(partnerCode);
         momoRequestDto.setRequestId(requestId);
         momoRequestDto.setOrderId(orderId);
-        momoRequestDto.setAmount(Math.round(course.getNet_price() * 23000));
+
+        long amount;
+        if (course.getNet_price() == 0) {
+            amount = Math.round(course.getPrice() * 23000);
+        } else {
+            amount = Math.round(course.getNet_price() * 23000);
+        }
+        momoRequestDto.setAmount(amount);
+        // momoRequestDto.setAmount(Math.round(course.getNet_price() * 23000));
         momoRequestDto.setLang(momoRequestDto.getLang());
         momoRequestDto.setOrderInfo(orderInfo);
         momoRequestDto.setRedirectUrl(redirectUrl);

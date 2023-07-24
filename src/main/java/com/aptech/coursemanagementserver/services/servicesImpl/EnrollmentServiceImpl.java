@@ -11,12 +11,15 @@ import com.aptech.coursemanagementserver.dtos.EnrollmentDto;
 import com.aptech.coursemanagementserver.dtos.RatingStarsInterface;
 import com.aptech.coursemanagementserver.dtos.baseDto.BaseDto;
 import com.aptech.coursemanagementserver.enums.AntType;
+import com.aptech.coursemanagementserver.enums.OrderStatus;
 import com.aptech.coursemanagementserver.exceptions.BadRequestException;
 import com.aptech.coursemanagementserver.models.Course;
 import com.aptech.coursemanagementserver.models.Enrollment;
+import com.aptech.coursemanagementserver.models.Orders;
 import com.aptech.coursemanagementserver.models.User;
 import com.aptech.coursemanagementserver.repositories.CourseRepository;
 import com.aptech.coursemanagementserver.repositories.EnrollmentRepository;
+import com.aptech.coursemanagementserver.repositories.OrdersRepository;
 import com.aptech.coursemanagementserver.repositories.UserRepository;
 import com.aptech.coursemanagementserver.services.EnrollmentService;
 
@@ -28,6 +31,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
+    private final OrdersRepository ordersRepository;
 
     @Override
     public BaseDto enroll(EnrollmentDto enrollmentDto) {
@@ -42,6 +46,15 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
             if (course.getStatus() == 0) {
                 throw new BadRequestException("This course 've already deactivated.");
+            }
+
+            if (course.getPrice() > 0 || course.getNet_price() > 0) {
+                Orders firstCompletedOrder = ordersRepository.findFirstCompletedOrderWithCourse(user.getId(),
+                        course.getId());
+
+                if (firstCompletedOrder == null) {
+                    throw new BadRequestException("This course maybe change the price! Please reload the Page");
+                }
             }
 
             Enrollment enrollment = new Enrollment();

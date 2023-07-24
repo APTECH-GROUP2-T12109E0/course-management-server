@@ -65,7 +65,12 @@ public class PaypalService {
 
         Amount amount = new Amount();
         amount.setCurrency(dto.getCurrency());
-        var total = new BigDecimal(course.getNet_price()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double total;
+        if (course.getNet_price() == 0) {
+            total = new BigDecimal(course.getPrice()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        } else {
+            total = new BigDecimal(course.getNet_price()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        }
         amount.setTotal(String.format("%.2f", total));
 
         Transaction transaction = new Transaction();
